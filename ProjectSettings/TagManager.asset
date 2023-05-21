@@ -6,6 +6,7 @@ TagManager:
   tags:
   - obstacle
   - scoreUp
+  - coin
   layers:
   - Default
   - TransparentFX

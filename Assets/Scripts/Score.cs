@@ -27,5 +27,9 @@ public class Score : MonoBehaviour
         if (other.gameObject.tag == "scoreUp") {
             score++;
         }
+
+        if(other.gameObject.tag == "coin") {
+            score += 5;
+        }
     }
 }

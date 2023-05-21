@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
+using UnityEngine.UI;
+
 
 public class App_Initialize : MonoBehaviour
 {
@@ -9,7 +12,18 @@ public class App_Initialize : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject gameOverMenuUI;
     public GameObject player;
-    private bool hasGameStarted = false; 
+    public GameObject adButton;
+    public GameObject restartButton;
+
+    private bool hasGameStarted = false;
+    private bool hasSeenRewardedAd = false;
+    private bool testMode = true;
+
+    public string myGameIdAndroid = "5286201";
+    public string myGameIdIOS = "5286200";
+    public string adUnitIdAndroid = "Rewarded_Android";
+    public string adUnitIdIOS = "Rewarded_iOS";
+    public string myAdUnitId;
 
     private void Awake() {
         Shader.SetGlobalFloat("_Curvature", 2.0f);
@@ -22,6 +36,14 @@ public class App_Initialize : MonoBehaviour
         inGameUI.gameObject.SetActive(false);
         mainMenuUI.gameObject.SetActive(true);
         gameOverMenuUI.gameObject.SetActive(false);
+
+#if UNITY_IOS
+        Advertisement.Initialize(myGameIdIOS, testMode);
+        myAdUnitId = adUnitIdIOS;
+#else
+	    Advertisement.Initialize(myGameIdAndroid, testMode);
+	    myAdUnitId = adUnitIdAndroid;
+#endif
     }
 
     public void PlayGame() {
@@ -47,6 +69,12 @@ public class App_Initialize : MonoBehaviour
         inGameUI.gameObject.SetActive(false);
         mainMenuUI.gameObject.SetActive(false);
         gameOverMenuUI.gameObject.SetActive(true);
+        if (hasSeenRewardedAd == true) {
+            adButton.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            adButton.GetComponent<Button>().enabled = false;
+            adButton.GetComponent<Animator>().enabled = false;
+            restartButton.GetComponent<Animator>().enabled = true;
+        }
     }
 
     public void RestartGame() {
@@ -54,7 +82,12 @@ public class App_Initialize : MonoBehaviour
     }
 
     public void ShowAd() {
-        StartCoroutine(StartGame(1.0f));
+        if(Advertisement.isInitialized) {
+            Advertisement.Load(myAdUnitId);
+            Advertisement.Show(myAdUnitId);
+            hasSeenRewardedAd = true;
+        }
+        StartCoroutine(StartGame(5.0f));
     }
 
     private IEnumerator StartGame(float waitTime) {
@@ -65,5 +98,4 @@ public class App_Initialize : MonoBehaviour
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
     }
-
 }

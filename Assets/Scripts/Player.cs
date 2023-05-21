@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
+    public GameObject sceneManager;
     public float playerSpeed = 3000;
     public float directionalSpeed = 20;
-    // Start is called before the first frame update
+    public AudioClip scoreUp;
+    public AudioClip damage;
+
     void Start(){
         
     }
@@ -25,4 +29,16 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(touch.x, transform.position.y, transform.position.z);
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "scoreUp") {
+            GetComponent<AudioSource>().PlayOneShot(scoreUp, 1.0f);
+        }
+
+        if (other.gameObject.tag == "obstacle") {
+            GetComponent<AudioSource>().PlayOneShot(damage, 1.0f);
+            sceneManager.GetComponent<App_Initialize>().GameOver();
+        }
+    }
+
 }

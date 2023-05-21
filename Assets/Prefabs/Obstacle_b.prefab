@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2358989243557045897}
   - component: {fileID: 2358989243557046132}
   - component: {fileID: 2358989243557045899}
-  - component: {fileID: 2358989243557045898}
+  - component: {fileID: 7718696831286180338}
   m_Layer: 0
   m_Name: Obstacle 2
   m_TagString: obstacle
@@ -84,20 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2358989243557045898
-MeshCollider:
+--- !u!65 &7718696831286180338
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2358989243557045896}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3613567641014311022, guid: a0627a7f927fe4976853e94ccc279ae6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.020000005, z: 0.015000003}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2358989243627276387
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +108,7 @@ GameObject:
   - component: {fileID: 2358989243627276396}
   - component: {fileID: 2358989243627276399}
   - component: {fileID: 2358989243627276398}
-  - component: {fileID: 2358989243627276397}
+  - component: {fileID: 1517024461040963317}
   m_Layer: 0
   m_Name: Obstacle 1
   m_TagString: obstacle
@@ -182,20 +181,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2358989243627276397
-MeshCollider:
+--- !u!65 &1517024461040963317
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2358989243627276387}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3613567641014311022, guid: a0627a7f927fe4976853e94ccc279ae6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.020000005, z: 0.015000003}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8193764958243063014
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +251,7 @@ GameObject:
   - component: {fileID: 3023317125740072185}
   m_Layer: 0
   m_Name: Obstacle_b
-  m_TagString: obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
